@@ -1,0 +1,61 @@
+[
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "QApplication",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QMainWindow",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "Map",
+        "importPath": "folium",
+        "description": "folium",
+        "isExtraImport": true,
+        "detail": "folium",
+        "documentation": {}
+    },
+    {
+        "label": "Marker",
+        "importPath": "folium",
+        "description": "folium",
+        "isExtraImport": true,
+        "detail": "folium",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"FDMs\")\n        self.setGeometry(100, 100, 800, 600)\n# Main function to run the application\nif __name__ == '__main__':\n    app = QApplication(sys.argv)\n    window = MainWindow()\n    window.show()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "create_map",
+        "kind": 2,
+        "importPath": "map",
+        "description": "map",
+        "peekOfCode": "def create_map(lat, lon):\n    # Create a folium map centered at the given latitude and longitude\n    # Use the 'Stamen Terrain' tiles, which can be cached for offline use\n    folium_map = Map(\n        location=[lat, lon],\n        zoom_start=15,\n        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)\n    )\n    # Add a marker for the location\n    Marker([lat, lon], popup=\"Current Location\").add_to(folium_map)",
+        "detail": "map",
+        "documentation": {}
+    }
+]
