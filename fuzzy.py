@@ -1,4 +1,4 @@
-from simpful import FuzzySet, LinguisticVariable, FuzzySystem, AutoTriangle
+from simpful import FuzzySet, LinguisticVariable, FuzzySystem, AutoTriangle, SingletonsSet
 import os
 import config
 import json
@@ -17,17 +17,17 @@ class FuzzyInference:
 
         day_hour_ok = FuzzySet(points=[[0, 1], [12,1], [13,0]], term="low")
         day_hour_medium = FuzzySet(points=[[13, 0], [14,1], [21,1], [22,0]], term="moderate")
-        day_hour_danger = FuzzySet(points=[[12,0.],[13,1], [14,0], [21,0], [22,1], [24,1] ], term="high")
+        day_hour_danger = FuzzySet(points=[[12,0.],[13,1], [14,0], [21,0], [22,1] ], term="high")
         lv_day_hour = LinguisticVariable([day_hour_ok, day_hour_medium, day_hour_danger], universe_of_discourse=[0,24])
 
-        weather_ok = FuzzySet(points=[[1, 0], [2,1]], term="clear")
-        weather_medium = FuzzySet(points=[[0, 0], [1,1], [2,0]], term="rainy")
-        weather_danger = FuzzySet(points=[[0, 1], [1,0]], term="wet")
-        lv_weather = LinguisticVariable([weather_ok, weather_medium, weather_danger], universe_of_discourse=[0,2])
+        weather_ok = SingletonsSet(pairs=[[0,1]], term="normal")
+        weather_medium = SingletonsSet(pairs=[[1, 1]], term="rainy")
+        weather_danger = SingletonsSet(pairs=[[2, 1]], term="inclement")
+        lv_weather = LinguisticVariable([weather_ok, weather_medium, weather_danger], universe_of_discourse=[0, 2])
 
         speed_ok = FuzzySet(points=[[65, 1], [70,0]], term="cautious")
         speed_medium = FuzzySet(points=[[65, 0], [75,1], [85,0]], term="elevated")
-        speed_danger = FuzzySet(points=[[80, 0], [85,1], [220,1]], term="hazardous")
+        speed_danger = FuzzySet(points=[[80, 0], [85,1], [120,1]], term="hazardous")
         lv_speed = LinguisticVariable([speed_ok, speed_medium, speed_danger], universe_of_discourse=[0,120])
 
         lv_sleep = AutoTriangle(2, terms=['awake', 'drowsy'], universe_of_discourse=[0, 1])
