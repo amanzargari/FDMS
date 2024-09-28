@@ -6,7 +6,7 @@ import os
 icon_path = os.path.join(config.ROOT_DIR, 'static', 'images', 'marker.png')
 icon = folium.features.CustomIcon(icon_path, icon_size=(25, 41))
 
-def create_map(lat, lon):
+def create_map(lat, lon) -> str:
     # Create a folium map centered at the given latitude and longitude
     # Use the 'Stamen Terrain' tiles, which can be cached for offline use
     folium_map = Map(
