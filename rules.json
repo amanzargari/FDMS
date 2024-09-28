@@ -1,0 +1,294 @@
+[
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "very_low"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "low"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "clear",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "very_low"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "moderate",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "low"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "moderate",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "moderate",
+    "weather": "clear",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "high",
+    "weather": "clear",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "rainy",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "low"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "rainy",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "rainy",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "rainy",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "rainy",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "rainy",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "rainy",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "rainy",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "rainy",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "rainy",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "rainy",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "wet",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "wet",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "wet",
+    "speed": "cautious",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "low",
+    "weather": "wet",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "medium"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "moderate",
+    "weather": "wet",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekday",
+    "day_hour": "high",
+    "weather": "wet",
+    "speed": "elevated",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "low",
+    "weather": "wet",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "high"
+  },
+  {
+    "week_day": "weekend",
+    "day_hour": "moderate",
+    "weather": "wet",
+    "speed": "hazardous",
+    "sleep": "awake",
+    "result": "very_high"
+  },
+  {
+    "sleep": "drowsy",
+    "result": "very_high"
+  }
+]
