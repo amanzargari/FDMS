@@ -6,7 +6,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("FDMs")
-        self.setGeometry(100, 100, 800, 600)
+        self.setGeometry(50, 50, 1200, 700)
 
 # Main function to run the application
 if __name__ == '__main__':
