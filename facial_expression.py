@@ -2,8 +2,6 @@ import cv2
 import mediapipe as mp
 import math
 import numpy as np 
-import os 
-import time
 import torch
 import config
 

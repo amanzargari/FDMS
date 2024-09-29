@@ -25,6 +25,135 @@
         "documentation": {}
     },
     {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "mediapipe",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mediapipe",
+        "description": "mediapipe",
+        "detail": "mediapipe",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "config",
+        "description": "config",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "FuzzySet",
+        "importPath": "simpful",
+        "description": "simpful",
+        "isExtraImport": true,
+        "detail": "simpful",
+        "documentation": {}
+    },
+    {
+        "label": "LinguisticVariable",
+        "importPath": "simpful",
+        "description": "simpful",
+        "isExtraImport": true,
+        "detail": "simpful",
+        "documentation": {}
+    },
+    {
+        "label": "FuzzySystem",
+        "importPath": "simpful",
+        "description": "simpful",
+        "isExtraImport": true,
+        "detail": "simpful",
+        "documentation": {}
+    },
+    {
+        "label": "AutoTriangle",
+        "importPath": "simpful",
+        "description": "simpful",
+        "isExtraImport": true,
+        "detail": "simpful",
+        "documentation": {}
+    },
+    {
+        "label": "SingletonsSet",
+        "importPath": "simpful",
+        "description": "simpful",
+        "isExtraImport": true,
+        "detail": "simpful",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "folium",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "folium",
+        "description": "folium",
+        "detail": "folium",
+        "documentation": {}
+    },
+    {
         "label": "Map",
         "importPath": "folium",
         "description": "folium",
@@ -41,12 +170,146 @@
         "documentation": {}
     },
     {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "pytz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytz",
+        "description": "pytz",
+        "detail": "pytz",
+        "documentation": {}
+    },
+    {
+        "label": "persian",
+        "importPath": "convertdate",
+        "description": "convertdate",
+        "isExtraImport": true,
+        "detail": "convertdate",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
         "label": "MainWindow",
         "kind": 6,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"FDMs\")\n        self.setGeometry(100, 100, 800, 600)\n# Main function to run the application\nif __name__ == '__main__':\n    app = QApplication(sys.argv)\n    window = MainWindow()\n    window.show()",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"FDMS\")\n        self.setGeometry(50, 50, 1200, 700)\n# Main function to run the application\nif __name__ == '__main__':\n    app = QApplication(sys.argv)\n    window = MainWindow()\n    window.show()",
         "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "Camera",
+        "kind": 6,
+        "importPath": "camera",
+        "description": "camera",
+        "peekOfCode": "class Camera:\n    def __init__(self, camera_id, rgb=True, resize=None) -> None:\n        self.camera = cv2.VideoCapture(camera_id)\n        # find frame rate from camera\n        self.frame_rate = self.camera.get(cv2.CAP_PROP_FPS)\n        self.size = (int(self.camera.get(cv2.CAP_PROP_FRAME_WIDTH)),\n                     int(self.camera.get(cv2.CAP_PROP_FRAME_HEIGHT)))\n        self.black_image = np.zeros((self.size[1], self.size[0], 3), np.uint8)\n        self.is_rgb = rgb\n        self.resize = resize",
+        "detail": "camera",
+        "documentation": {}
+    },
+    {
+        "label": "ROOT_DIR",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "ROOT_DIR = os.path.dirname(os.path.abspath(__file__))\nOpenWeatherMap_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')\nOpenWeatherMap_API_URL = \"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric\".format(api_key=OpenWeatherMap_API_KEY, lat='{lat}', lon='{lon}')\ninclement = [600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622, 511, 762]\nrainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531, \n         300, 301, 302, 310, 311, 312, 313, 314, 321, \n         200, 201, 202, 210, 211, 212, 221, 230, 231, 232]\nnormal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "OpenWeatherMap_API_KEY",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "OpenWeatherMap_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')\nOpenWeatherMap_API_URL = \"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric\".format(api_key=OpenWeatherMap_API_KEY, lat='{lat}', lon='{lon}')\ninclement = [600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622, 511, 762]\nrainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531, \n         300, 301, 302, 310, 311, 312, 313, 314, 321, \n         200, 201, 202, 210, 211, 212, 221, 230, 231, 232]\nnormal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "OpenWeatherMap_API_URL",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "OpenWeatherMap_API_URL = \"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={api_key}&units=metric\".format(api_key=OpenWeatherMap_API_KEY, lat='{lat}', lon='{lon}')\ninclement = [600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622, 511, 762]\nrainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531, \n         300, 301, 302, 310, 311, 312, 313, 314, 321, \n         200, 201, 202, 210, 211, 212, 221, 230, 231, 232]\nnormal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "inclement",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "inclement = [600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622, 511, 762]\nrainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531, \n         300, 301, 302, 310, 311, 312, 313, 314, 321, \n         200, 201, 202, 210, 211, 212, 221, 230, 231, 232]\nnormal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "rainy",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "rainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531, \n         300, 301, 302, 310, 311, 312, 313, 314, 321, \n         200, 201, 202, 210, 211, 212, 221, 230, 231, 232]\nnormal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "normal",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "normal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]\nLSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "LSTM_MODEL_PATH",
+        "kind": 5,
+        "importPath": "config",
+        "description": "config",
+        "peekOfCode": "LSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'clf_lstm_jit6.pth')",
+        "detail": "config",
+        "documentation": {}
+    },
+    {
+        "label": "FacialDrowsiness",
+        "kind": 6,
+        "importPath": "facial_expression",
+        "description": "facial_expression",
+        "peekOfCode": "class FacialDrowsiness:\n    def __init__(self):\n        self.model = torch.jit.load(config.LSTM_MODEL_PATH)\n        self.model.eval()\n        self.mp_face_mesh = mp.solutions.face_mesh\n        self.face_mesh = self.mp_face_mesh.FaceMesh(\n            min_detection_confidence=0.3, min_tracking_confidence=0.8)\n        self.mp_drawing = mp.solutions.drawing_utils \n        self.drawing_spec = self.mp_drawing.DrawingSpec(thickness=1, circle_radius=1)\n        self.right_eye = [[33, 133], [160, 144], [159, 145], [158, 153]]",
+        "detail": "facial_expression",
+        "documentation": {}
+    },
+    {
+        "label": "FuzzyInference",
+        "kind": 6,
+        "importPath": "fuzzy",
+        "description": "fuzzy",
+        "peekOfCode": "class FuzzyInference:\n    def __init__(self) -> None:\n        rules = self.load_rules_from_json_file()\n        self.fuzzy_init(rules)\n    def fuzzy_init(self, rules):\n        week_day_ok= FuzzySet(points=[[0, 1], [3, 1], [4, 0]], term=\"weekday\")\n        week_day_danger= FuzzySet(points=[[3, 0], [4, 1], [6, 1]], term=\"weekend\")\n        lv_week_day = LinguisticVariable([week_day_ok, week_day_danger], universe_of_discourse=[0,6])\n        day_hour_ok = FuzzySet(points=[[0, 1], [12,1], [13,0]], term=\"low\")\n        day_hour_medium = FuzzySet(points=[[13, 0], [14,1], [21,1], [22,0]], term=\"moderate\")",
+        "detail": "fuzzy",
+        "documentation": {}
+    },
+    {
+        "label": "fuzzy_rules",
+        "kind": 5,
+        "importPath": "fuzzy",
+        "description": "fuzzy",
+        "peekOfCode": "fuzzy_rules = os.path.join(config.ROOT_DIR, 'static', 'fuzzy rules', 'rules.json')\nclass FuzzyInference:\n    def __init__(self) -> None:\n        rules = self.load_rules_from_json_file()\n        self.fuzzy_init(rules)\n    def fuzzy_init(self, rules):\n        week_day_ok= FuzzySet(points=[[0, 1], [3, 1], [4, 0]], term=\"weekday\")\n        week_day_danger= FuzzySet(points=[[3, 0], [4, 1], [6, 1]], term=\"weekend\")\n        lv_week_day = LinguisticVariable([week_day_ok, week_day_danger], universe_of_discourse=[0,6])\n        day_hour_ok = FuzzySet(points=[[0, 1], [12,1], [13,0]], term=\"low\")",
+        "detail": "fuzzy",
         "documentation": {}
     },
     {
@@ -54,8 +317,44 @@
         "kind": 2,
         "importPath": "map",
         "description": "map",
-        "peekOfCode": "def create_map(lat, lon):\n    # Create a folium map centered at the given latitude and longitude\n    # Use the 'Stamen Terrain' tiles, which can be cached for offline use\n    folium_map = Map(\n        location=[lat, lon],\n        zoom_start=15,\n        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)\n    )\n    # Add a marker for the location\n    Marker([lat, lon], popup=\"Current Location\").add_to(folium_map)",
+        "peekOfCode": "def create_map(lat, lon) -> str:\n    # Create a folium map centered at the given latitude and longitude\n    # Use the 'Stamen Terrain' tiles, which can be cached for offline use\n    folium_map = Map(\n        location=[lat, lon],\n        zoom_start=15,\n        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)\n    )\n    # Add a marker for the location \n    Marker([lat, lon], popup=\"Current Location\", icon=icon).add_to(folium_map)",
         "detail": "map",
+        "documentation": {}
+    },
+    {
+        "label": "icon_path",
+        "kind": 5,
+        "importPath": "map",
+        "description": "map",
+        "peekOfCode": "icon_path = os.path.join(config.ROOT_DIR, 'static', 'images', 'marker.png')\nicon = folium.features.CustomIcon(icon_path, icon_size=(25, 41))\ndef create_map(lat, lon) -> str:\n    # Create a folium map centered at the given latitude and longitude\n    # Use the 'Stamen Terrain' tiles, which can be cached for offline use\n    folium_map = Map(\n        location=[lat, lon],\n        zoom_start=15,\n        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)\n    )",
+        "detail": "map",
+        "documentation": {}
+    },
+    {
+        "label": "icon",
+        "kind": 5,
+        "importPath": "map",
+        "description": "map",
+        "peekOfCode": "icon = folium.features.CustomIcon(icon_path, icon_size=(25, 41))\ndef create_map(lat, lon) -> str:\n    # Create a folium map centered at the given latitude and longitude\n    # Use the 'Stamen Terrain' tiles, which can be cached for offline use\n    folium_map = Map(\n        location=[lat, lon],\n        zoom_start=15,\n        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)\n    )\n    # Add a marker for the location ",
+        "detail": "map",
+        "documentation": {}
+    },
+    {
+        "label": "TimeDate",
+        "kind": 6,
+        "importPath": "timedate",
+        "description": "timedate",
+        "peekOfCode": "class TimeDate:\n    def __init__(self, timezone='Asia/Tehran', solar_hijri=True):\n        self.timezone = timezone\n        self.solar_hijri = solar_hijri\n    def get_time_str(self) -> str:\n        time_now = datetime.datetime.now(pytz.timezone(self.timezone))\n        return time_now.strftime('%H:%M:%S')\n    def get_date_str(self) -> str:\n        date_now = datetime.datetime.now(pytz.timezone(self.timezone))\n        return date_now.strftime('%Y-%m-%d')",
+        "detail": "timedate",
+        "documentation": {}
+    },
+    {
+        "label": "Weather",
+        "kind": 6,
+        "importPath": "weather",
+        "description": "weather",
+        "peekOfCode": "class Weather:\n    def __init__(self) -> None:\n        self.wr = None\n    def update(self, lat:float, lon:float) -> dict:\n        r = requests.get(config.OpenWeatherMap_API_URL.format(lat=lat, lon=lon))\n        self.wr = r.json()\n        return self.wr\n    def get_weather_id(self) -> int:\n        return self.wr['weather'][0]['id']\n    def get_weather_main(self) -> str:",
+        "detail": "weather",
         "documentation": {}
     }
 ]
