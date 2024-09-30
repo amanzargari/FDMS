@@ -16,5 +16,5 @@ rainy = [500, 501, 502, 503, 504, 511, 520, 521, 522, 531,
         
 normal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 781,]
 
-LSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'keras_lstm_model.onnx')
-FEATURE_EXTRACTOR_MODEL_PATH = os.path.join(ROOT_DIR, 'model', 'keras_feature_extractor_model.onnx')
+LSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_lstm_model.onnx')
+FEATURE_EXTRACTOR_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_feature_extractor_model.onnx')
