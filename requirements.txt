@@ -1,0 +1,11 @@
+requests
+python-dotenv
+onnx
+onnxruntime
+python-opencv
+numpy
+folium
+PyQt6
+simpful
+pytz
+convertdate
