@@ -44,12 +44,12 @@ class VideoClassifier:
         return np.array(features)
 
     def classify(self, features) -> np.ndarray:
-        # Ensure we have 70 frames, pad if necessary
-        if features.shape[0] < 70:
-            pad_length = 70 - features.shape[0]
+        # Ensure we have 200 frames, pad if necessary
+        if features.shape[0] < 200:
+            pad_length = 200 - features.shape[0]
             features = np.pad(features, ((0, pad_length), (0, 0)), mode='constant')
-        elif features.shape[0] > 70:
-            features = features[:70]
+        elif features.shape[0] > 200:
+            features = features[:200]
         
         # Add batch dimension
         features = np.expand_dims(features, axis=0)
@@ -57,28 +57,3 @@ class VideoClassifier:
         # Run LSTM classifier
         output = self.lstm_classifier.run([self.output_name_lstm], {self.input_name_lstm: features})[0]
         return output.squeeze()
-
-    def process_video(self) -> np.ndarray:
-        cap = cv2.VideoCapture(0)
-        frames = []
-        
-        i = 0
-        while True:
-            ret, frame = cap.read()
-            if not ret:
-                break
-            frames.append(frame)
-        
-        cap.release()
-        
-        features = self.extract_features(frames)
-        classification = self.classify(features)
-        
-        return classification
-
-# Usage example
-if __name__ == "__main__":
-    classifier = VideoClassifier()
-    
-    result = classifier.process_video()
-    print("Classification result:", result)
