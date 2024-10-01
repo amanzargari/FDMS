@@ -166,3 +166,5 @@ cython_debug/
 .vscode/PythonImportHelper-v2-Completion.json
 
 test.ipynb
+
+output.mp4
