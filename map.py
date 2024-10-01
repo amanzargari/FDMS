@@ -12,7 +12,8 @@ def create_map(lat, lon) -> str:
     folium_map = Map(
         location=[lat, lon],
         zoom_start=15,
-        tiles='Stamen Terrain'  # Use Stamen Terrain tiles (can be cached offline)
+        #tiles='Stamen Terrain',  # Use Stamen Terrain tiles (can be cached offline)
+        #attr='Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
     )
 
     # Add a marker for the location 
