@@ -9,3 +9,4 @@ PyQt6
 simpful
 pytz
 convertdate
+PyQt6-WebEngine
