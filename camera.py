@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import QTimer, pyqtSignal
 from PyQt6.QtGui import QImage, QPainter
 import numpy as np
 
@@ -46,6 +46,8 @@ class Camera:
         return int(self.frame_rate)
 
 class CameraWidget(QWidget):
+    frames_collected = pyqtSignal(list)  # Signal to emit when 200 frames are collected
+
     def __init__(self, camera: Camera, parent=None):
         super().__init__(parent)
         self.camera = camera
@@ -53,12 +55,23 @@ class CameraWidget(QWidget):
         self.timer.timeout.connect(self.update_frame)
         self.timer.start(1000 // self.camera.get_framerate())  # Set timer to match camera FPS
         self.current_frame = self.camera.black_image
+        self.frame_buffer = []  # Buffer to store frames
+        self.frames_to_collect = 200  # Number of frames to collect before emitting
 
     def update_frame(self):
         frame = self.camera.get_frame()
         if frame is not None:
             self.current_frame = frame
+            self.frame_buffer.append(frame)  # Add the frame to the buffer
+            
+            if len(self.frame_buffer) >= self.frames_to_collect:
+                self.emit_frames()
+                self.frame_buffer.clear()  # Clear the buffer after emitting
+
             self.update()  # Trigger a repaint
+
+    def emit_frames(self):
+        self.frames_collected.emit(self.frame_buffer)  # Emit the list of collected frames
 
     def paintEvent(self, event):
         painter = QPainter(self)
