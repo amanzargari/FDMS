@@ -168,3 +168,6 @@ cython_debug/
 test.ipynb
 
 output.mp4
+
+static/maps/map_data.pkl
+static/maps/iran-latest.osm.pbf
