@@ -1,5 +1,9 @@
 import cv2
 import numpy as np
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import QTimer
+from PyQt6.QtGui import QImage, QPainter
+import numpy as np
 
 class Camera:
     def __init__(self, camera_id, rgb=True, resize=None) -> None:
@@ -39,4 +43,26 @@ class Camera:
         return self.size
     
     def get_framerate(self) -> int:
-        return self.frame_rate
+        return int(self.frame_rate)
+
+class CameraWidget(QWidget):
+    def __init__(self, camera: Camera, parent=None):
+        super().__init__(parent)
+        self.camera = camera
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.update_frame)
+        self.timer.start(1000 // self.camera.get_framerate())  # Set timer to match camera FPS
+        self.current_frame = self.camera.black_image
+
+    def update_frame(self):
+        frame = self.camera.get_frame()
+        if frame is not None:
+            self.current_frame = frame
+            self.update()  # Trigger a repaint
+
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        height, width, channel = self.current_frame.shape
+        bytes_per_line = 3 * width
+        q_image = QImage(self.current_frame.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
+        painter.drawImage(0, 0, q_image)
