@@ -28,7 +28,6 @@ class OSMHandler(osmium.SimpleHandler):
             self.ways = map_data['ways']
             map_data = None
 
-
 class RequestInterceptor(QWebEngineUrlRequestInterceptor):
     def __init__(self, ways):
         super().__init__()
