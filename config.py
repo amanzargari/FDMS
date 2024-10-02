@@ -18,3 +18,5 @@ normal = [801, 802, 803, 804, 800, 701, 711, 721, 731, 741, 751, 761, 762, 771, 
 
 LSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_lstm_model_best_200.onnx')
 FEATURE_EXTRACTOR_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_feature_extractor_model.onnx')
+
+MAP_FILE = os.path.join(ROOT_DIR, 'static', 'maps', 'map_data.pkl')
