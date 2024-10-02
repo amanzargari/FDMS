@@ -10,3 +10,4 @@ simpful
 pytz
 convertdate
 PyQt6-WebEngine
+osmium
