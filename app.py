@@ -3,7 +3,9 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QWidget, QTa
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtCore import QTimer, QRect
 
-from map import create_map
+from gps_sim import GPSSimulator
+from map import OSMHandler, RequestInterceptor, load_map, start_http_server
+import time
 
 class MapWindow(QMainWindow):
     def __init__(self):
@@ -20,13 +22,24 @@ class MapWindow(QMainWindow):
         self.main_tab()
         self.setting_tab()
         
+        self.gps_sim = GPSSimulator()
+        
+        handler = OSMHandler()
+        start_http_server()
+        
+        interceptor = RequestInterceptor(handler.ways)
+        self.web_view.page().profile().setUrlRequestInterceptor(interceptor)
+
+        html = load_map(self.gps_sim.latitude, self.gps_sim.longitude)
+        self.web_view.setHtml(html)
+        
+        # Initial map update
+        self.update_map()
+        
         # Initialize the timer
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_map)
-        self.timer.start(120000)  # 120000 milliseconds = 2 minutes
-
-        # Initial map update
-        self.update_map()
+        self.timer.start(1000)
     
     def main_tab(self):
         self.tab_main = QWidget()
@@ -45,12 +58,8 @@ class MapWindow(QMainWindow):
         self.tab_widget.addTab(self.tab_setting, "Setting")
 
     def update_map(self):
-        # In a real application, you would fetch new coordinates here
-        # For this example, we'll use static coordinates
-        latitude, longitude = 35.591556, 53.399074
-        map_html = create_map(latitude, longitude)
-        self.web_view.setHtml(map_html)
-        print("Map updated")  # Optional: for debugging
+        lat, lon, speed, heading = self.gps_sim.get_next_reading()
+        self.web_view.page().runJavaScript(f"updateMarker({lat}, {lon}, {speed}, {heading});")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
