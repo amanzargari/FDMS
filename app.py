@@ -51,7 +51,7 @@ class MapWindow(QMainWindow):
         self.setting_tab()
         
         # Create TimeDate instance
-        self.time_date = TimeDate()
+        self.time_date = TimeDate(solar_hijri=False)
 
         # Create a text box for displaying information
         self.info_text_box = QTextEdit(self.tab_main)
@@ -70,7 +70,7 @@ class MapWindow(QMainWindow):
         
         self.weather_timer = QTimer(self)
         self.weather_timer.timeout.connect(self.update_weather)
-        self.weather_timer.start(1000 * 60 * 60)  # Update weather every hour
+        self.weather_timer.start(1000 * 60 * 10)  # Update weather every 10 minutes
         
         self.weather_info_text_box = QTextEdit(self.tab_main)
         self.weather_info_text_box.setGeometry(QRect(820, 505, 350, 150))
@@ -83,7 +83,7 @@ class MapWindow(QMainWindow):
         
         self.fuzzy_timer = QTimer(self)
         self.fuzzy_timer.timeout.connect(self._fuzzy_inference)
-        self.fuzzy_timer.start(1000 * 30) # Run the fuzzy inference every minute
+        self.fuzzy_timer.start(1000 * 30) # Run the fuzzy inference every half minute
         
         
         # Video Classifier
@@ -141,14 +141,12 @@ class MapWindow(QMainWindow):
         
         # Update the text box with the latest GPS data and time/date
         current_time_str = self.time_date.get_datetime_str()
-        persian_date = self.time_date.persina_date()
-        persian_date_str = f"{persian_date[0]}/{persian_date[1]}/{persian_date[2]} - {self.time_date.persian_week_day()}"  # Format: YYYY/MM/DD
+        weekday = self.time_date.gregorian_week_day()
         info_text = f"""
     <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
         <p><b>Speed:</b> <span style="color: #2196F3;">{speed:.1f} km/h</span></p>
-        <h3 style="color: #4CAF50;">Date and Time</h3>
-        <p><b>Gregorian:</b> <span style="color: #FF9800;">{current_time_str}</span></p>
-        <p><b>Persian Date:</b> <span style="color: #FF9800;">{persian_date_str}</span></p>
+        <p><b>Date and Time:</b> <span style="color: #FF9800;">{current_time_str} - {weekday}</span></p>
+        <p><b>Driver Drowsiness: </b> <span style="color: #FF9800;">{self.drowsy_value*100:.2f}%</span></p>
     </div>
     """
         self.info_text_box.setHtml(info_text)
