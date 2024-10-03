@@ -20,7 +20,7 @@ class Weather:
         return self.wr['main']['temp']
     
     def get_humidity(self) -> int:
-        return self.wt['main']['humidity']
+        return self.wr['main']['humidity']
     
     def get_city_country(self) -> tuple[str, str]:
         return self.wr['name'], self.wr['sys']['country']
