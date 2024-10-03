@@ -146,3 +146,16 @@ class TimeDate:
         """
         persian_weekdays = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه']
         return persian_weekdays[self.get_week_day()]
+    
+    def gregorian_week_day(self) -> str:
+        """
+        Returns the Gregorian name of the current weekday.
+
+        The method uses the `get_week_day` method to determine the current weekday
+        and maps it to the corresponding Gregorian weekday name.
+
+        Returns:
+            str: The Gregorian name of the current weekday.
+        """
+        gregorian_weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        return gregorian_weekdays[self.get_week_day()]
