@@ -1,7 +1,9 @@
 import sys
-from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QTabWidget, QTextEdit
+from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QTabWidget, QTextEdit, QLabel
 from PyQt6.QtWebEngineWidgets import QWebEngineView
-from PyQt6.QtCore import QTimer, QRect
+from PyQt6.QtCore import QTimer, QRect, Qt
+from PyQt6.QtGui import QPixmap
+import numpy as np
 
 from gps_sim import GPSSimulator
 from map import OSMHandler, RequestInterceptor, load_map, start_http_server
@@ -10,7 +12,7 @@ from timedate import TimeDate
 from weather import Weather
 from fuzzy import FuzzyInference
 from video_classifier import VideoClassifier, VideoClassificationThread
-import numpy as np
+from config import DRIVING_ICONS
 
 class MapWindow(QMainWindow):
     def __init__(self):
@@ -81,7 +83,7 @@ class MapWindow(QMainWindow):
         
         self.fuzzy_timer = QTimer(self)
         self.fuzzy_timer.timeout.connect(self._fuzzy_inference)
-        self.fuzzy_timer.start(1000 * 60) # Run the fuzzy inference every minute
+        self.fuzzy_timer.start(1000 * 30) # Run the fuzzy inference every minute
         
         
         # Video Classifier
@@ -94,6 +96,11 @@ class MapWindow(QMainWindow):
         self.video_classifier_timer = QTimer(self)
         self.video_classifier_timer.timeout.connect(self._video_classification)
         self.video_classifier_timer.start(1000 * 60 * 1)  # Run the video classification every 5 minutes
+        
+        # Driving risk icon
+        self.risk_icon_label = QLabel(self.tab_main)
+        self.risk_icon_label.setGeometry(QRect(820, 180, 150, 150))
+        self.update_driving_risk_icon('very_low')
     
     def main_tab(self) -> None:
         self.data_widget = QWidget(self.tab_main)
@@ -159,8 +166,13 @@ class MapWindow(QMainWindow):
     def _fuzzy_inference(self):
         speed = self.gps_sim.get_next_reading()[2]
         drowsiness = self.drowsy_value
-        weather = self.weather.get_temp()
-        
+        weather = self.weather.weather_id_to_condition_number(self.weather.get_weather_id())
+        week_day = self.time_date.get_week_day()
+        hour = self.time_date.get_hour()
+        print(f"Speed: {speed}, Drowsiness: {drowsiness}, Weather: {weather}, Week Day: {week_day}, Hour: {hour}")
+        result = self.fuzzy_inference(hour=hour, day=week_day, weather=weather, speed=speed, sleep=drowsiness)
+        print(result)
+        self.update_driving_risk_icon(result)
     
     def closeEvent(self, event):
         self.map_timer.stop()
@@ -174,6 +186,22 @@ class MapWindow(QMainWindow):
         
     def _store_frames(self, frames):
         self.collected_frames = frames
+    
+    def update_driving_risk_icon(self, state:str) -> None:
+        if state == 'very_low':
+            pixmap = QPixmap(DRIVING_ICONS.very_low)
+        elif state == 'low':
+            pixmap = QPixmap(DRIVING_ICONS.low)
+        elif state == 'medium':
+            pixmap = QPixmap(DRIVING_ICONS.medium)
+        elif state == 'high':
+            pixmap = QPixmap(DRIVING_ICONS.high)
+        elif state == 'very_high':
+            pixmap = QPixmap(DRIVING_ICONS.very_high)
+        else:
+            return
+        
+        self.risk_icon_label.setPixmap(pixmap.scaled(150, 150, Qt.AspectRatioMode.KeepAspectRatio))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
