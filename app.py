@@ -14,10 +14,47 @@ from fuzzy import FuzzyInference
 from video_classifier import VideoClassifier, VideoClassificationThread
 from config import DRIVING_ICONS
 
-class MapWindow(QMainWindow):
+class MainWindows(QMainWindow):
+    """
+    Main application window for the FDMS (Fleet Driver Monitoring System).
+    Attributes:
+        central_widget (QWidget): The central widget of the main window.
+        tab_widget (QTabWidget): The tab widget containing different tabs.
+        tab_main (QWidget): The main tab widget.
+        tab_setting (QWidget): The settings tab widget.
+        web_view (QWebEngineView): The web view for displaying the map.
+        gps_sim (GPSSimulator): The GPS simulator instance.
+        camera (Camera): The camera instance for capturing video.
+        time_date (TimeDate): The time and date instance.
+        info_text_box (QTextEdit): The text box for displaying information.
+        map_timer (QTimer): The timer for updating the map.
+        collected_frames (list): The list of collected frames from the camera.
+        weather (Weather): The weather instance for fetching weather data.
+        weather_timer (QTimer): The timer for updating weather information.
+        weather_info_text_box (QTextEdit): The text box for displaying weather information.
+        fuzzy_inference (FuzzyInference): The fuzzy inference system instance.
+        fuzzy_timer (QTimer): The timer for running fuzzy inference.
+        video_classifier (VideoClassifier): The video classifier instance.
+        video_classification_thread (VideoClassificationThread): The thread for video classification.
+        drowsy_value (float): The drowsiness value from video classification.
+        video_classifier_timer (QTimer): The timer for running video classification.
+        risk_icon_label (QLabel): The label for displaying the driving risk icon.
+    Methods:
+        __init__(): Initializes the main window and its components.
+        main_tab(): Creates and sets up the main tab.
+        setting_tab(): Creates and sets up the settings tab.
+        update_weather(): Updates the weather information.
+        update_map(): Updates the map with the latest GPS data.
+        _video_classification(): Runs the video classification process.
+        update_classification_result(label: np.ndarray): Updates the classification result.
+        _fuzzy_inference(): Runs the fuzzy inference process.
+        closeEvent(event): Handles the close event of the main window.
+        _store_frames(frames): Stores the collected frames from the camera.
+        update_driving_risk_icon(state: str): Updates the driving risk icon based on the given state.
+    """
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("FDMS")
+        self.setWindowTitle("Fuzzy-based Driver Monitoring System")
         self.setGeometry(20, 30, 1200, 750)
 
         self.central_widget = QWidget()
@@ -103,6 +140,15 @@ class MapWindow(QMainWindow):
         self.update_driving_risk_icon('very_low')
     
     def main_tab(self) -> None:
+        """
+        Initializes the main tab of the application.
+        This method sets up the main tab by creating and configuring the data widget 
+        and the camera widget. It also connects the camera widget's frames_collected 
+        signal to the _store_frames method and adds the main tab to the tab widget.
+        Attributes:
+            data_widget (QWidget): A widget to display data on the main tab.
+            camera_widget (CameraWidget): A widget to display camera feed on the main tab.
+        """
         self.data_widget = QWidget(self.tab_main)
         self.data_widget.setGeometry(QRect(950, 20, 350, 710))
         
@@ -113,9 +159,28 @@ class MapWindow(QMainWindow):
         self.tab_widget.addTab(self.tab_main, "Main")
     
     def setting_tab(self) -> None:
+        """
+        Adds the 'Setting' tab to the tab widget.
+
+        This method creates a new tab labeled 'Setting' and adds it to the 
+        tab widget of the application.
+        """
         self.tab_widget.addTab(self.tab_setting, "Setting")
     
     def update_weather(self) -> None:
+        """
+        Updates the weather information by fetching the latest GPS coordinates and 
+        retrieving the corresponding weather data. The weather information is then 
+        formatted into an HTML string and displayed in the weather information text box.
+        The method performs the following steps:
+        1. Retrieves the next GPS reading (latitude and longitude).
+        2. Updates the weather data using the retrieved coordinates.
+        3. Fetches the main weather description, temperature, humidity, city, and country.
+        4. Formats the weather information into an HTML string.
+        5. Sets the formatted HTML string to the weather information text box.
+        Returns:
+            None
+        """
         lat, lon = self.gps_sim.get_next_reading()[:2]
         self.weather.update(lat, lon)
         
@@ -136,6 +201,14 @@ class MapWindow(QMainWindow):
         self.weather_info_text_box.setHtml(weather_text)
 
     def update_map(self) -> None:
+        """
+        Updates the map with the latest GPS data and updates the text box with the latest GPS data and time/date.
+        This method retrieves the next GPS reading (latitude, longitude, speed, and heading) from the GPS simulator,
+        updates the map marker using JavaScript, and updates the text box with the latest GPS data, current date and time,
+        and driver drowsiness information.
+        Returns:
+            None
+        """
         lat, lon, speed, heading = self.gps_sim.get_next_reading()
         self.web_view.page().runJavaScript(f"updateMarker({lat}, {lon}, {speed}, {heading});")
         
@@ -143,15 +216,23 @@ class MapWindow(QMainWindow):
         current_time_str = self.time_date.get_datetime_str()
         weekday = self.time_date.gregorian_week_day()
         info_text = f"""
-    <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
-        <p><b>Speed:</b> <span style="color: #2196F3;">{speed:.1f} km/h</span></p>
-        <p><b>Date and Time:</b> <span style="color: #FF9800;">{current_time_str} - {weekday}</span></p>
-        <p><b>Driver Drowsiness: </b> <span style="color: #FF9800;">{self.drowsy_value*100:.2f}%</span></p>
-    </div>
-    """
+        <div style="font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
+            <p><b>Speed:</b> <span style="color: #2196F3;">{speed:.1f} km/h</span></p>
+            <p><b>Date and Time:</b> <span style="color: #FF9800;">{current_time_str} - {weekday}</span></p>
+            <p><b>Driver Drowsiness: </b> <span style="color: #FF9800;">{self.drowsy_value*100:.2f}%</span></p>
+        </div>
+        """
         self.info_text_box.setHtml(info_text)
         
     def _video_classification(self) -> None:
+        """
+        Perform video classification on collected frames.
+        This method checks if there are any collected frames. If there are no frames,
+        it returns immediately. Otherwise, it sets the collected frames to the 
+        video classification thread and starts the thread.
+        Returns:
+            None
+        """
         if len(self.collected_frames) == 0:
             return
         
@@ -159,9 +240,26 @@ class MapWindow(QMainWindow):
         self.video_classification_thread.start()
     
     def update_classification_result(self, label:np.ndarray) -> None:
+        """
+        Updates the classification result by setting the drowsy_value attribute.
+
+        Args:
+            label (np.ndarray): A numpy array where the second element represents the drowsy value.
+        """
         self.drowsy_value = float(label[1])
     
     def _fuzzy_inference(self):
+        """
+        Perform fuzzy inference to determine driving risk based on various factors.
+
+        This method retrieves the current speed, drowsiness level, weather condition,
+        day of the week, and hour of the day, and then performs a fuzzy inference
+        to calculate the driving risk. The result is printed and used to update the
+        driving risk icon.
+
+        Returns:
+            None
+        """
         speed = self.gps_sim.get_next_reading()[2]
         drowsiness = self.drowsy_value
         weather = self.weather.weather_id_to_condition_number(self.weather.get_weather_id())
@@ -173,6 +271,15 @@ class MapWindow(QMainWindow):
         self.update_driving_risk_icon(result)
     
     def closeEvent(self, event):
+        """
+        Handles the close event for the application.
+
+        This method is called when the application window is about to close.
+        It stops various timers and threads to ensure a clean shutdown.
+
+        Args:
+            event (QCloseEvent): The close event that triggered this method.
+        """
         self.map_timer.stop()
         self.camera_widget.timer.stop()
         self.camera.release()
@@ -183,9 +290,23 @@ class MapWindow(QMainWindow):
         event.accept()
         
     def _store_frames(self, frames):
+        """
+        Stores the given frames in the collected_frames attribute.
+
+        Args:
+            frames (list): A list of frames to be stored.
+        """
         self.collected_frames = frames
     
     def update_driving_risk_icon(self, state:str) -> None:
+        """
+        Updates the driving risk icon based on the provided state.
+        Args:
+            state (str): The driving risk state. Expected values are 'very_low', 'low', 
+                         'medium', 'high', or 'very_high'.
+        Returns:
+            None
+        """
         if state == 'very_low':
             pixmap = QPixmap(DRIVING_ICONS.very_low)
         elif state == 'low':
@@ -203,6 +324,6 @@ class MapWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MapWindow()
+    window = MainWindows()
     window.show()
     sys.exit(app.exec())
