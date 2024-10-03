@@ -2,6 +2,8 @@ import numpy as np
 import onnxruntime as ort
 import cv2
 import config
+import time
+from PyQt6.QtCore import QThread, pyqtSignal
 
 class VideoClassifier:
     def __init__(self) -> None:
@@ -23,12 +25,9 @@ class VideoClassifier:
         
         # DenseNet preprocessing
         image /= 255.0
-        mean = np.array([0.485, 0.456, 0.406])
-        std = np.array([0.229, 0.224, 0.225])
+        mean = np.array([0.485, 0.456, 0.406], dtype=np.float32)
+        std = np.array([0.229, 0.224, 0.225], dtype=np.float32)
         image = (image - mean) / std
-        
-        # Transpose to (C, H, W) format
-        image = np.transpose(image, (2, 0, 1))
         
         # Add batch dimension
         image = np.expand_dims(image, axis=0)
@@ -41,7 +40,7 @@ class VideoClassifier:
             preprocessed_frame = self.preprocess_image(frame)
             feature = self.feature_extractor.run([self.output_name_feature], {self.input_name_feature: preprocessed_frame})[0]
             features.append(feature.squeeze())
-        return np.array(features)
+        return np.array(features, dtype=np.float32)
 
     def classify(self, features) -> np.ndarray:
         # Ensure we have 200 frames, pad if necessary
@@ -57,3 +56,28 @@ class VideoClassifier:
         # Run LSTM classifier
         output = self.lstm_classifier.run([self.output_name_lstm], {self.input_name_lstm: features})[0]
         return output.squeeze()
+
+
+class VideoClassificationThread(QThread):
+    classification_done = pyqtSignal(np.ndarray)
+
+    def __init__(self, video_classifier: VideoClassifier) -> None:
+        super().__init__()
+        self.video_classifier = video_classifier
+        self.frames = []
+
+    def set_frames(self, frames):
+        self.frames = frames
+
+    def run(self):
+        if len(self.frames) == 0:
+            return
+
+        tic = time.time()
+        features = self.video_classifier.extract_features(self.frames)
+        label = self.video_classifier.classify(features)
+        toc = time.time()
+        print(f"Video Classification took {toc - tic:.2f} seconds")
+        print(label)
+        print(float(label[1]))
+        self.classification_done.emit(label)
