@@ -99,7 +99,7 @@ class MapWindow(QMainWindow):
         
         # Driving risk icon
         self.risk_icon_label = QLabel(self.tab_main)
-        self.risk_icon_label.setGeometry(QRect(820, 180, 150, 150))
+        self.risk_icon_label.setGeometry(QRect(650, 10, 150, 150))
         self.update_driving_risk_icon('very_low')
     
     def main_tab(self) -> None:
