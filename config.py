@@ -20,3 +20,10 @@ LSTM_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_lstm_model_be
 FEATURE_EXTRACTOR_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_feature_extractor_model.onnx')
 
 MAP_FILE = os.path.join(ROOT_DIR, 'static', 'maps', 'map_data.pkl')
+
+class DRIVING_ICONS:
+    very_low = os.path.join(ROOT_DIR, 'static', 'icons', 'very_low.png')
+    low = os.path.join(ROOT_DIR, 'static', 'icons', 'low.png')
+    medium = os.path.join(ROOT_DIR, 'static', 'icons', 'medium.png')
+    high = os.path.join(ROOT_DIR, 'static', 'icons', 'high.png')
+    very_high = os.path.join(ROOT_DIR, 'static', 'icons', 'very_high.png')
