@@ -1,3 +1,4 @@
+import config
 import cv2
 import numpy as np
 from PyQt6.QtWidgets import QWidget
@@ -35,7 +36,7 @@ class Camera:
     get_framerate() -> int
         Returns the frame rate of the camera.
     """
-    def __init__(self, camera_id, rgb=True, resize=None) -> None:
+    def __init__(self, camera_id, rgb=True, resize=None, fake=True) -> None:
         """
         Initializes the Camera object.
         Args:
@@ -65,6 +66,13 @@ class Camera:
         if self.resize:
             self.size = self.resize
             self.black_image = np.zeros((self.size[1], self.size[0], 3), np.uint8)
+        
+        self.fake_frame = cv2.imread(config.DRIVER_SAMPLE_IMAGE)
+        self.fake_frame = cv2.resize(self.fake_frame, self.size)
+        self.fake_frame = cv2.cvtColor(self.fake_frame, cv2.COLOR_BGR2RGB)
+        
+        self.fake = fake
+        
 
     def get_frame(self) -> np.ndarray:
         """
@@ -75,6 +83,9 @@ class Camera:
                 the image is converted to RGB format; otherwise, it is returned 
                 in its original format.
         """
+        if self.fake:
+            return self.fake_frame
+        
         success, image = self.camera.read()
         
         if self.resize : image = cv2.resize(image, self.size)
