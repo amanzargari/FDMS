@@ -21,6 +21,8 @@ FEATURE_EXTRACTOR_MODEL_PATH = os.path.join(ROOT_DIR, 'static', 'model', 'keras_
 
 MAP_FILE = os.path.join(ROOT_DIR, 'static', 'maps', 'map_data.pkl')
 
+DRIVER_SAMPLE_IMAGE = os.path.join(ROOT_DIR, 'static', 'images', 'driver_sample.png')
+
 class DRIVING_ICONS:
     very_low = os.path.join(ROOT_DIR, 'static', 'icons', 'very_low.png')
     low = os.path.join(ROOT_DIR, 'static', 'icons', 'low.png')
