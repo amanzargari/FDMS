@@ -81,7 +81,7 @@ class MainWindows(QMainWindow):
         self.web_view.setHtml(html)
         
         # Camera
-        self.camera = Camera(camera_id=0, resize=(400, 350))
+        self.camera = Camera(camera_id=0, resize=(400, 350), fake=True)
         
         # Create Tabs
         self.main_tab()
