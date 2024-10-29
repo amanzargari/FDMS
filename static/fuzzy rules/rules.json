@@ -2,7 +2,7 @@
   {
     "week_day": "weekday",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "very_low"
@@ -10,7 +10,7 @@
   {
     "week_day": "weekday",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "low"
@@ -18,7 +18,7 @@
   {
     "week_day": "weekday",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "high"
@@ -26,7 +26,7 @@
   {
     "week_day": "weekend",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "medium"
@@ -34,7 +34,7 @@
   {
     "week_day": "weekend",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "high"
@@ -42,7 +42,7 @@
   {
     "week_day": "weekend",
     "day_hour": "low",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "very_high"
@@ -50,7 +50,7 @@
   {
     "week_day": "weekday",
     "day_hour": "moderate",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "very_low"
@@ -58,7 +58,7 @@
   {
     "week_day": "weekday",
     "day_hour": "moderate",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "medium"
@@ -66,7 +66,7 @@
   {
     "week_day": "weekend",
     "day_hour": "moderate",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "low"
@@ -74,7 +74,7 @@
   {
     "week_day": "weekend",
     "day_hour": "moderate",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "high"
@@ -82,7 +82,7 @@
   {
     "week_day": "weekend",
     "day_hour": "moderate",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "very_high"
@@ -90,7 +90,7 @@
   {
     "week_day": "weekday",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "medium"
@@ -98,7 +98,7 @@
   {
     "week_day": "weekday",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "high"
@@ -106,7 +106,7 @@
   {
     "week_day": "weekday",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "very_high"
@@ -114,7 +114,7 @@
   {
     "week_day": "weekend",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "cautious",
     "sleep": "awake",
     "result": "medium"
@@ -122,7 +122,7 @@
   {
     "week_day": "weekend",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "elevated",
     "sleep": "awake",
     "result": "very_high"
@@ -130,7 +130,7 @@
   {
     "week_day": "weekend",
     "day_hour": "high",
-    "weather": "clear",
+    "weather": "normal",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "very_high"
@@ -226,7 +226,7 @@
   {
     "week_day": "weekday",
     "day_hour": "low",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "cautious",
     "sleep": "awake",
     "result": "medium"
@@ -234,7 +234,7 @@
   {
     "week_day": "weekday",
     "day_hour": "moderate",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "cautious",
     "sleep": "awake",
     "result": "medium"
@@ -242,7 +242,7 @@
   {
     "week_day": "weekday",
     "day_hour": "high",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "cautious",
     "sleep": "awake",
     "result": "very_high"
@@ -250,7 +250,7 @@
   {
     "week_day": "weekday",
     "day_hour": "low",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "elevated",
     "sleep": "awake",
     "result": "medium"
@@ -258,7 +258,7 @@
   {
     "week_day": "weekday",
     "day_hour": "moderate",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "elevated",
     "sleep": "awake",
     "result": "high"
@@ -266,7 +266,7 @@
   {
     "week_day": "weekday",
     "day_hour": "high",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "elevated",
     "sleep": "awake",
     "result": "very_high"
@@ -274,7 +274,7 @@
   {
     "week_day": "weekend",
     "day_hour": "low",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "high"
@@ -282,7 +282,7 @@
   {
     "week_day": "weekend",
     "day_hour": "moderate",
-    "weather": "wet",
+    "weather": "inclement",
     "speed": "hazardous",
     "sleep": "awake",
     "result": "very_high"
